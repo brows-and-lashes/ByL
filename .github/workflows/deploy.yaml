@@ -13,6 +13,7 @@ jobs:
     env:
       TF_FORCE_LOCAL_BACKEND: 1
       TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TERRAFORM_TOKEN }}
+      TF_VAR_subscription_id: ${{ secrets.SUBSCRIPTION_ID }}
     defaults:
       run:
         working-directory: terraform-infra
