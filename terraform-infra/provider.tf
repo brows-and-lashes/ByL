@@ -1,5 +1,5 @@
 terraform {
-    cloud {
+  cloud {
     organization = "ByLBeautyBar"
     hostname     = "app.terraform.io"
     workspaces {
