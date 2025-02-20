@@ -15,7 +15,7 @@ resource "azurerm_federated_identity_credential" "example" {
   audience            = ["api://AzureADTokenExchange"]
   issuer              = "https://token.actions.githubusercontent.com"
   parent_id           = azurerm_user_assigned_identity.github_identity.id
-  subject             = "repo:${var.organization_name}/${var.repository_name}:*"
+  subject             = "repo:${var.organization_name}/${var.repository_name}:ref:refs/heads/main"
 }
 
 resource "github_actions_secret" "client_id" {
