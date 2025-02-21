@@ -48,7 +48,7 @@ resource "azapi_resource" "sql_database" {
 resource "azurerm_mssql_firewall_rule" "allow-admin-db-firewall" {
   for_each         = toset(split(",", var.admin_ips))
   name             = "allow-admin-ip-${each.key}"
-  server_id        = azurerm_mssql_server.example.id
+  server_id        = azurerm_mssql_server.sqlserver.id
   start_ip_address = each.value
   end_ip_address   = each.value
 }
