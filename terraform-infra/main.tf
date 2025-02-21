@@ -22,7 +22,7 @@ resource "azapi_resource" "sql_database" {
     properties = {
       minCapacity                      = 0.5
       maxSizeBytes                     = 34359738368
-      autoPauseDelay                   = 5
+      autoPauseDelay                   = 15
       zoneRedundant                    = false
       isLedgerOn                       = false
       useFreeLimit                     = true
