@@ -9,13 +9,19 @@ resource "azurerm_user_assigned_identity" "github_identity" {
   name                = "github"
 }
 
-resource "azurerm_federated_identity_credential" "example" {
+resource "azurerm_federated_identity_credential" "github_identity_credentials" {
   name                = "github-actions"
   resource_group_name = azurerm_resource_group.byl_resource_group.name
   audience            = ["api://AzureADTokenExchange"]
   issuer              = "https://token.actions.githubusercontent.com"
   parent_id           = azurerm_user_assigned_identity.github_identity.id
   subject             = "repo:${var.organization_name}/${var.repository_name}:ref:refs/heads/main"
+}
+
+resource "azurerm_role_assignment" "github_contributor" {
+  scope                = "/subscriptions/${var.subscription_id}"
+  role_definition_name = "Contributor"
+  principal_id         = azurerm_user_assigned_identity.github_identity.principal_id
 }
 
 resource "github_actions_secret" "client_id" {
